@@ -1,0 +1,8 @@
+__pycache__/
+.venv/
+
+# Ignore all files in the stockfish directory
+stockfish/
+
+# Folder with non-anonymized files
+anonymity/

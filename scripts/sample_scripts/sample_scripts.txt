@@ -1,0 +1,33 @@
+Sample script you can run from the '/lang-chess/' folder below that will test evaluations:
+
+python inference.py `
+  --client_type "api" `
+  --api_key "YOUR_OPENROUTER_API_KEY" `
+  --base_url "https://openrouter.ai/api/v1/chat/completions" `
+  --model "openai/gpt-oss-120b" `
+  --model_version "oai_oss" `
+  --experiment_name "oai_oss_120b_med_openrouter_predictmove_eval" `
+  --run_type "eval" `
+  --data_dir "data/cleaned/evals" `
+  --data_files "predictmove_eval_400.jsonl" `
+  --batch_size 10 `
+  --max_samples 10 `
+  --max_tokens 12000 `
+  --temperature 0.6 `
+  --top_p 0.95 `
+  --top_k 20 `
+  --min_p 0 `
+  --reasoning_effort medium `
+  --save_verbose
+
+
+
+Sample script you can run from the `/lang-chess/` folder that will generate SFT data:
+
+python -m data.sft_datagen_vabp
+
+
+
+Similarly can generate veRL data using this:
+
+python -m data.verl_datagen_datamix_10

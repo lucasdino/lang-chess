@@ -1,0 +1,50 @@
+name: llamafactory-q25-sft-bestline
+image: isadoracw/llama-factory-mc:latest
+env_variables:
+  S3_DATASET_PATH:  # TODO - add path to download desired SFT dataset. You can also use a local path here if small enough   
+  DATASET_GEN_FILE: "sft_datagen_bestline"                                         # The data generation script to use
+  YAML_CONFIG_FILE: "scripts/train_configs/llamafactory_sft_q25_bestline.yaml"     # YAML config file for llama factory
+command: |-
+  # ------------------------------
+  # Download/install dependencies -- ensure you're running this from '/lang-chess/' with your env activated
+  # ------------------------------
+  # We recommend creating a new env for this since Llama Factory has specific dependencies
+  # conda create -n llamafactory-lang-chess python=3.10 -y
+  # conda activate llamafactory-lang-chess
+  apt-get update && apt-get install -y libgl1-mesa-glx
+  pip install opencv-python
+  pip install wandb
+
+  # ------------------------------
+  # Generate our dataset (or download from S3)
+  # ------------------------------
+  python -m data.$DATASET_GEN_FILE
+  # aws s3 sync $S3_DATASET_PATH llm_chess/data
+
+  # ------------------------------
+  # Download and install llamafactory
+  # ------------------------------
+  git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
+  cd LLaMA-Factory
+  pip install -e ".[torch,metrics]"
+  cd ..
+
+  # ------------------------------
+  # Train (using yaml as config)
+  # ------------------------------
+  llamafactory-cli train $YAML_CONFIG_FILE
+
+  # ------------------------------
+  # Save trained model (shown is using an S3 bucket; can use other methods as you desire)
+  # ------------------------------
+  # aws s3 cp sft-model/ s3://llm-chess/saved_models/sft-model/llamafactory-q25-sft-bestline --recursive \
+  # --exclude "*" \
+  # --include "model-*.safetensors" \
+  # --include "model.safetensors.index.json" \
+  # --include "config.json" \
+  # --include "tokenizer.json" \
+  # --include "tokenizer_config.json" \
+  # --include "special_tokens_map.json" \
+  # --include "generation_config.json"
+
+  echo "Training complete and model saved to S3"

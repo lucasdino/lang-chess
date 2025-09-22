@@ -1,0 +1,49 @@
+name: llmchess-bm-bl-drgrpo-400
+image: lucasdino/llm_chess:latest
+env_variables:
+  MODEL_NAME: "lucasdino/Qwen2.5-7B-Chess-BM-BL-DRGRPO"  # HuggingFace model name or path
+  MODEL_VERSION: "qwen25"                                # Model version (for tokenizer -- see 'prompts' folder; note we do this because several tasks require more flexiblity than just "instruct" or "chat")
+  EXPERIMENT_NAME: "llmchess-bm-bl-drgrpo-400"           # Experiment name
+  DATA_FILES: "bestmove_eval_400.jsonl legalmoves_eval_400.jsonl predictmove_eval_400.jsonl worstmove_eval_400.jsonl"
+command: |-
+  # Ensure you're running this from '/lang-chess/' with your env activated
+  echo "Waiting for model server to become available..."     # We use a dependent_deployment but you can set this up differently if you desire
+  sleep 30
+
+  until curl http://localhost:8000/v1/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": $MODEL_NAME,
+        "prompt": "San Francisco is a",
+        "max_tokens": 7,
+        "temperature": 0
+    }'> /dev/null; do       echo -n ".";       sleep 10;   done
+  echo "Model API endpoint is live. Starting the job..."
+
+  python -m inference \
+    --model $MODEL_NAME \
+    --model_version $MODEL_VERSION \
+    --experiment_name $EXPERIMENT_NAME \
+    --data_dir data/cleaned/evals \
+    --data_files $DATA_FILES \
+    --run_type eval \
+    --batch_size 50 \
+    --max_samples None \
+    --use_wandb \
+    --save_verbose
+
+  echo "Finished the job."
+
+
+dependent_deployment:
+  image: vllm/vllm-openai:latest
+  model: {}
+  command: |-
+    set -x
+    echo Downloading $MODEL_NAME from HuggingFace...
+
+    vllm serve $MODEL_NAME \
+      --tensor-parallel-size 1 \
+      --max-model-len 4000
+  env_variables:
+    MODEL_NAME: "lucasdino/Qwen2.5-7B-Chess-BM-BL-DRGRPO"

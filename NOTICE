@@ -1,0 +1,16 @@
+NOTICE
+
+This project, Reasoning Through Chess, includes contributions from the
+following sources:
+
+- Portions of this work make use of the *Searchless Chess* dataset released by
+  DeepMind Technologies Limited (https://github.com/deepmind/searchless-chess),
+  licensed under the Apache License, Version 2.0.
+  Modifications include preprocessing, resampling, and integration with additional datasets.
+
+Additional contributions:
+
+- This project is developed and maintained by Lucas Dionisopoulos and
+  collaborators.
+
+Copyright 2025 Lucas Dionisopoulos

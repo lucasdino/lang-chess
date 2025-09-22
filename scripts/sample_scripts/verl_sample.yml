@@ -1,0 +1,42 @@
+name: verl-q25-sft-bestline-drgrpo-datamix_10
+image: whatcanyousee/verl:ngc-cu124-vllm0.8.5-sglang0.4.6-mcore0.12.0-te2.3
+env_variables:
+  DATA_GEN_FILE: "verl_datagen_datamix_10"                   # The data generation script to use
+  # S3_URI: TODO - add your s3 URI here  
+  SH_FILE: "verl_drgrpo_q25_bestline.sh"                     # verl args to use
+  EXPERIMENT_NAME: "verl-q25-sft-bestline-drgrpo-bestline"   # experiment name
+command: |-
+  # TODO: Ensure you're running this from '/lang-chess/'
+  # We recommend creating a new env for this since verl has specific dependencies. Use conda / uv
+  # conda create -n verl-lang-chess python=3.10 -y
+  # conda activate verl-lang-chess
+  python -m data.$DATA_GEN_FILE    # Create our datasets
+
+  # =====================================================================
+  # Need to import verl so that the python -m calls work
+  # =====================================================================
+  # Clone verl fork
+  git clone --depth 1 https://github.com/lucasdino/verl-chess
+  mv verl-chess/verl ./
+  mv verl-chess/setup.py ./
+  pip install -e .[vllm]
+  echo "veRL is live."
+
+  # =====================================================================
+  # Fetch our desired model for RL (from S3 bucket; can also use HuggingFace)
+  # =====================================================================
+  # aws s3 sync $S3_URI models/base_model
+  # huggingface-cli download lucasdino/Qwen2.5-7B-Chess-BM-BL-SFT --local-dir models/base_model --local-dir-use-symlinks False
+  mkdir models/checkpoints
+
+  # =====================================================================
+  # Main veRL loop
+  # =====================================================================
+  scripts/train_configs/$SH_FILE
+
+  # Optional: Save the trained model to S3
+  # aws s3 cp models/checkpoints s3://llm-chess/saved_models/verl-model/$EXPERIMENT_NAME --recursive \
+  # --exclude "*/optim/*"
+
+  echo "Training complete and model saved to S3"
+  sleep 5

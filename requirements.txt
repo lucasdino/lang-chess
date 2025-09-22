@@ -1,0 +1,10 @@
+chess
+datasets
+numpy
+pandas
+Requests
+transformers
+wandb
+ipykernel
+notebook
+jupyterlab

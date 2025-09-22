@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Data Viewer</title>
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <link rel="stylesheet" href="viewer/styles.css?v=2">
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="controls-row">
+                <div class="control-group">
+                    <label for="runFolder1">Run Folder (Left)</label>
+                    <select id="runFolder1">
+                        <option value="">Select a run folder...</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="fileSelect1">File (Left)</label>
+                    <select id="fileSelect1" disabled>
+                        <option value="">Select a file...</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="runFolder2">Run Folder (Right)</label>
+                    <select id="runFolder2">
+                        <option value="">Select a run folder...</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="fileSelect2">File (Right)</label>
+                    <select id="fileSelect2" disabled>
+                        <option value="">Select a file...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button id="randomizeBtn" disabled>🎲 Randomize Both</button>
+                <button id="randomizeLeftBtn" disabled>🎲 Randomize Left</button>
+                <button id="randomizeRightBtn" disabled>🎲 Randomize Right</button>
+            </div>
+        </div>
+
+        <div class="comparison-container">
+            <div class="viewer">
+                <div class="viewer-header">Left Sample</div>
+                <div class="viewer-content" id="leftContent">
+                    <div class="loading">Select a run folder and file to view data</div>
+                </div>
+            </div>
+
+            <div class="viewer">
+                <div class="viewer-header">Right Sample</div>
+                <div class="viewer-content" id="rightContent">
+                    <div class="loading">Select a run folder and file to view data</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="viewer/script.js?v=3"></script>
+</body>
+</html> 
