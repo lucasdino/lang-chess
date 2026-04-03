@@ -2,7 +2,6 @@
 
 <p align="center">
   <a href="https://huggingface.co/collections/lucasdino/llm-chess">🤗 Hugging Face Collection (Scaled Models + Data)</a> |
-  <a href="https://huggingface.co/datasets/lucasdino/chess-reasoning-data">🤗 Hugging Face Chess Reasoning Dataset</a> |
   <a href="https://lucasdino.github.io/assets/files/llm_chess_neurips_forlm_2025.pdf">📄 LLM Chess Preprint (PDF)</a>
 </p>
 
