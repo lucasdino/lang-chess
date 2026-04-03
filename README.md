@@ -20,11 +20,12 @@ Our experiments analyze:
 - The impact of different data types (e.g., single-move vs. multi-move trajectories) on reasoning faithfulness, hallucination rates, and training stability  
 - Which SFT-stage metrics best predict post-RL performance  
 
-Key contributions include:
-- Release of chess-specific reasoning datasets  
-- Training and evaluation code for SFT and RL  
-- Evaluation harness across four tasks: *Best Move, Worst Move, Predict Move, and Legal Moves*  
-- Final checkpoints and logs demonstrating strong performance relative to open-source baselines
+Key contributions of our work includes:
+- Quantitative and qualitative analysis of reasoning behavior that arises from training a checkpoint on various SFT data
+- Statistical study showing that final RL performance can be predicted by multiple metrics from an SFT checkpoint
+- Release of chess-specific reasoning datasets. We have this as a [Huggingface Dataset](https://huggingface.co/datasets/lucasdino/chess-reasoning-data) (120M train tokens), but this repo has samples as well as code to generate more of each data type   
+- Information density analysis for each data type
+- Final model checkpoints and logs demonstrating strong performance relative to open-source baselines
 
 ![Final Evaluation Performance](figures/final_eval_performance.jpg)
 
