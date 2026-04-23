@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://huggingface.co/collections/lucasdino/llm-chess">🤗 Hugging Face Collection (Scaled Models + Data)</a> |
-  <a href="https://lucasdino.github.io/assets/files/llm_chess_neurips_forlm_2025.pdf">📄 LLM Chess Preprint (PDF)</a>
+  <a href="https://arxiv.org/abs/2604.05134">📄 Paper (arxiv)</a>
 </p>
 
 ![Key Takeaway](figures/scaledexperiments_takeaway.jpg)
@@ -97,16 +97,8 @@ We recommend building with [uv](https://github.com/astral-sh/uv) for fast, repro
 4. Download Stockfish ([link](https://stockfishchess.org/download/)) for your platform and move the full 'stockfish' folder inside the 'data/raw' folder.
 
 ## Citation
-If you find this work useful, please cite:
+If you find this work useful, please cite us using the BibTeX on arxiv.
 
-```bibtex
-@inproceedings{dionisopoulos2025reasoningchess,
-  title     = {Reasoning Through Chess: How Reasoning Evolves from Data Through Fine-Tuning and Reinforcement Learning},
-  author    = {Lucas Dionisopoulos and Nicklas Majamaki and Prithviraj Ammanabrolu},
-  booktitle = {Proceedings of the NeurIPS 2025 Workshop on Foundations of Reasoning in Language Models},
-  year      = {2025},
-}
-```
 
 ## Licensing
 This repository is released under the MIT license (see LICENSE).
