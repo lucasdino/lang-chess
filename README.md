@@ -1,4 +1,4 @@
-# How Reasoning Evolves from Post-Training Data: An Empirical Study Using Chess (♟️ICML 2026♟️)
+# How Reasoning Evolves from Post-Training Data: An Empirical Study Using Chess (ICML 2026)
 
 <p align="center">
   <a href="https://huggingface.co/collections/lucasdino/llm-chess">🤗 Hugging Face Collection (Scaled Models + Data)</a> |
