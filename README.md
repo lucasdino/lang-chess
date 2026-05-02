@@ -1,16 +1,15 @@
-# Reasoning Through Chess: How Reasoning Evolves from Data Through Fine-Tuning and Reinforcement Learning
+# How Reasoning Evolves from Post-Training Data: An Empirical Study Using Chess (♟️ICML 2026♟️)
 
 <p align="center">
   <a href="https://huggingface.co/collections/lucasdino/llm-chess">🤗 Hugging Face Collection (Scaled Models + Data)</a> |
-  <a href="https://arxiv.org/abs/2604.05134">📄 Paper (arxiv)</a>
+  <a href="https://arxiv.org/abs/2604.05134">📄 ICML 2026 Paper (arxiv)</a>
 </p>
 
 ![Key Takeaway](figures/scaledexperiments_takeaway.jpg)
 
-This repository provides an implementation of the paper: *Reasoning Through Chess: How Reasoning Evolves from Data Through Fine-Tuning and Reinforcement Learning*.
+This repository provides an implementation of the paper: *How Reasoning Evolves from Post-Training Data: An Empirical Study Using Chess*.
 
-> *How can you get a language model to reason in a task it natively struggles with?* We study how reasoning evolves in a language model – from supervised fine-tuning (SFT) to reinforcement learning (RL) – by analyzing how a set of theoretically-inspired datasets impacts language model performance in chess. We find that fine-tuning a model to directly predict the best move leads to effective RL and the strongest downstream performance – however, the RL step elicits *unfaithful* reasoning (reasoning inconsistent with the chosen move). Alternatively, training on multi-move trajectories yields comparable downstream performance with faithful reasoning and more stable RL. We show that RL induces a substantial positive shift in the distribution of move quality and reduces hallucination rates as a side effect. Finally, we find several SFT-checkpoint metrics – metrics spanning evaluation performance, hallucination rates, and reasoning quality – to be predictive of post-RL model performance. We release checkpoints and final models as well as training data, evaluations, and code which allowed us to surpass leading open-source reasoning models in chess with a 7B-parameter model
-
+> We study how reasoning evolves in a language model -- from supervised fine-tuning (SFT) to reinforcement learning (RL) -- by analyzing how a set of theoretically-inspired datasets influences language model performance in chess. We find that fine-tuning a model to directly predict the best move leads to effective RL and the strongest downstream performance -- however, the RL stage elicits \textit{unfaithful} reasoning (reasoning inconsistent with the chosen move). Alternatively, training on multi-move trajectories yields comparable downstream performance with faithful reasoning and more stable RL. We analyze multiple qualitative and quantitative measures and highlight how these evolve from SFT through RL; we find several SFT-checkpoint metrics -- spanning evaluation performance, hallucination rates, and reasoning quality -- to be predictive of post-RL model performance. Finally, we ground our results with an experiment measuring \textit{chess information density} in our custom datasets. We release models as well as training data, evaluations, and code that allowed us to surpass leading open-source reasoning models in chess with a 7B-parameter model.
 
 ## Paper Overview
 We study how reasoning emerges in language models when applied to the domain of chess.  
